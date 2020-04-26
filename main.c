@@ -5,8 +5,8 @@
 #include "background_sprite.c"
 
 //declaração de variaveis globais
-BYTE pulando = 0;
-int posicaoXPlayer = 88;
+int pulando = 0;
+int posicaoXPlayer = 20;
 int posicaoYPlayer = 135;
 
 //declaração das funções
@@ -43,7 +43,7 @@ void main() {
         } else {
             executarControle();
         }
-        delay(50);
+        delay(80);
     }
 }
 
@@ -58,33 +58,38 @@ void cair() {
     if(retornarAlturaChao() > posicaoYPlayer) {
         posicaoYPlayer+=5;
         move_sprite(0,posicaoXPlayer,posicaoYPlayer);
-    } else {
-        pulando = 0;
+    }
+    if(posicaoYPlayer==135){
+        pulando=0;
     }
 }
 
 void pular() {
-    if(pulando == 0) {
-        pulando=1;
-        posicaoYPlayer-=60;
+    pulando++;
+    if(posicaoYPlayer > 90 && pulando < 10) {
+        posicaoYPlayer-=10;
     }
 }
 
 void executarControle() {
     switch (joypad()) {
         case J_LEFT:
-            posicaoXPlayer-=5;
+            if(posicaoXPlayer>=10){
+                posicaoXPlayer-=5;
+            }
             break;
         case J_LEFT + J_B:
-            posicaoXPlayer-=5;
             pular();
+            if(posicaoXPlayer>=10){
+                posicaoXPlayer-=5;
+            }
             break;
         case J_RIGHT:
             posicaoXPlayer+=5;
             break;
         case J_RIGHT + J_B:
-            posicaoXPlayer+=5;
             pular();
+            posicaoXPlayer+=5;
             break;
         case J_B:
             pular();

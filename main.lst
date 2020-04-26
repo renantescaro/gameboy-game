@@ -1,9 +1,9 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : FreeWare ANSI-C Compiler
-                              3 ; Version 2.2.1 Sun Apr 26 11:22:26 2020
+                              3 ; Version 2.2.1 Sun Apr 26 14:40:24 2020
                               4 
                               5 ;--------------------------------------------------------
-                              6 	.module lcc61760
+                              6 	.module lcc13280
                               7 	
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
@@ -114,11 +114,11 @@
    034A                     114 _background_sprite::
    034A                     115 	.ds 96
    03AA                     116 _pulando::
-   03AA                     117 	.ds 1
-   03AB                     118 _posicaoXPlayer::
-   03AB                     119 	.ds 2
-   03AD                     120 _posicaoYPlayer::
-   03AD                     121 	.ds 2
+   03AA                     117 	.ds 2
+   03AC                     118 _posicaoXPlayer::
+   03AC                     119 	.ds 2
+   03AE                     120 _posicaoYPlayer::
+   03AE                     121 	.ds 2
                             122 ;--------------------------------------------------------
                             123 ; overlayable items in internal ram 
                             124 ;--------------------------------------------------------
@@ -141,7 +141,7 @@
                             141 	.area _GSINIT
                             142 	.area _GSFINAL
                             143 	.area _GSINIT
-                            144 ;	main.c 102
+                            144 ;	main.c 107
                             145 ; genAssign (pointer)
    0000 11 00 00            146 	ld	de,#_carinha + 0
    0003 3E 3C               147 	ld	a,#0x3C
@@ -332,7 +332,7 @@
                             332 ; genAssign (pointer)
    00BD 3E 3C               333 	ld	a,#0x3C
    00BF 12                  334 	ld	(de),a
-                            335 ;	main.c 102
+                            335 ;	main.c 107
                             336 ; genAssign (pointer)
    00C0 11 20 00            337 	ld	de,#_background + 0
    00C3 3E 08               338 	ld	a,#0x08
@@ -5191,7 +5191,7 @@
                            5191 ; genAssign (pointer)
    13B9 3E 01              5192 	ld	a,#0x01
    13BB 12                 5193 	ld	(de),a
-                           5194 ;	main.c 102
+                           5194 ;	main.c 107
                            5195 ; genAssign (pointer)
    13BC 11 4A 03           5196 	ld	de,#_background_sprite + 0
    13BF 3E B3              5197 	ld	a,#0xB3
@@ -5766,609 +5766,669 @@
                            5766 ; genAssign (pointer)
    15F9 3E 00              5767 	ld	a,#0x00
    15FB 12                 5768 	ld	(de),a
-                           5769 ;	main.c 102
+                           5769 ;	main.c 107
                            5770 ; genAssign
                            5771 ; AOP_HL for _pulando
    15FC 21 AA 03           5772 	ld	hl,#_pulando + 0
    15FF 36 00              5773 	ld	(hl),#0x00
-                           5774 ;	main.c 102
-                           5775 ; genAssign
-                           5776 ; AOP_HL for _posicaoXPlayer
-   1601 21 AB 03           5777 	ld	hl,#_posicaoXPlayer + 0
-   1604 36 58              5778 	ld	(hl),#0x58
-   1606 23                 5779 	inc	hl
-   1607 36 00              5780 	ld	(hl),#0x00
-                           5781 ;	main.c 102
-                           5782 ; genAssign
-                           5783 ; AOP_HL for _posicaoYPlayer
-   1609 21 AD 03           5784 	ld	hl,#_posicaoYPlayer + 0
-   160C 36 87              5785 	ld	(hl),#0x87
-   160E 23                 5786 	inc	hl
-   160F 36 00              5787 	ld	(hl),#0x00
-                           5788 ;--------------------------------------------------------
-                           5789 ; Home
+   1601 23                 5774 	inc	hl
+   1602 36 00              5775 	ld	(hl),#0x00
+                           5776 ;	main.c 107
+                           5777 ; genAssign
+                           5778 ; AOP_HL for _posicaoXPlayer
+   1604 21 AC 03           5779 	ld	hl,#_posicaoXPlayer + 0
+   1607 36 14              5780 	ld	(hl),#0x14
+   1609 23                 5781 	inc	hl
+   160A 36 00              5782 	ld	(hl),#0x00
+                           5783 ;	main.c 107
+                           5784 ; genAssign
+                           5785 ; AOP_HL for _posicaoYPlayer
+   160C 21 AE 03           5786 	ld	hl,#_posicaoYPlayer + 0
+   160F 36 87              5787 	ld	(hl),#0x87
+   1611 23                 5788 	inc	hl
+   1612 36 00              5789 	ld	(hl),#0x00
                            5790 ;--------------------------------------------------------
-                           5791 	.area _HOME
-                           5792 	.area _CODE
-                           5793 ;--------------------------------------------------------
-                           5794 ; code
+                           5791 ; Home
+                           5792 ;--------------------------------------------------------
+                           5793 	.area _HOME
+                           5794 	.area _CODE
                            5795 ;--------------------------------------------------------
-                           5796 	.area _CODE
-                           5797 ;	main.c 20
-                           5798 ; genLabel
-                           5799 ; genFunction
-                           5800 ;	---------------------------------
-                           5801 ; Function main
-                           5802 ; ---------------------------------
-   0000                    5803 ___main_start:
-   0000                    5804 _main:
-   0000 C5                 5805 	push	bc
-                           5806 	
-                           5807 ;	main.c 21
-                           5808 ; genCall
-   0001 CD C3 00           5809 	call	_iniciarHardware
-                           5810 ;	main.c 24
-                           5811 ; genIpush
-   0004 21 4A 03           5812 	ld	hl,#_background_sprite + 0
-   0007 E5                 5813 	push	hl
-                           5814 ; genIpush
-   0008 3E 06              5815 	ld	a,#0x06
-   000A F5                 5816 	push	af
-   000B 33                 5817 	inc	sp
-                           5818 ; genIpush
-   000C 3E 00              5819 	ld	a,#0x00
-   000E F5                 5820 	push	af
-   000F 33                 5821 	inc	sp
-                           5822 ; genCall
-   0010 CD 00 00           5823 	call	_set_bkg_data
-   0013 E8 04              5824 	lda	sp,4(sp)
-                           5825 ;	main.c 25
-                           5826 ; genIpush
-   0015 21 20 00           5827 	ld	hl,#_background + 0
-   0018 E5                 5828 	push	hl
-                           5829 ; genIpush
-   0019 3E 12              5830 	ld	a,#0x12
-   001B F5                 5831 	push	af
-   001C 33                 5832 	inc	sp
-                           5833 ; genIpush
-   001D 3E 2D              5834 	ld	a,#0x2D
-   001F F5                 5835 	push	af
-   0020 33                 5836 	inc	sp
-                           5837 ; genIpush
-   0021 3E 00              5838 	ld	a,#0x00
-   0023 F5                 5839 	push	af
-   0024 33                 5840 	inc	sp
-                           5841 ; genIpush
-   0025 3E 00              5842 	ld	a,#0x00
-   0027 F5                 5843 	push	af
-   0028 33                 5844 	inc	sp
-                           5845 ; genCall
-   0029 CD 00 00           5846 	call	_set_bkg_tiles
-   002C E8 06              5847 	lda	sp,6(sp)
-                           5848 ;	main.c 26
-                           5849 ; genOr
-                           5850 ; AOP_SFR for _LCDC_REG
-                           5851 ; Type res[4] = l[4]&r[1]
-                           5852 ; Size res[1] = l[1]&r[1]
-   002E F0 00              5853 	ldh	a,(_LCDC_REG+0) ; x
-   0030 F6 01              5854 	or	a,#0x01
-   0032 E0 00              5855 	ldh	(_LCDC_REG+0),a
-                           5856 ;	main.c 29
-                           5857 ; genIpush
-   0034 21 00 00           5858 	ld	hl,#_carinha + 0
-   0037 E5                 5859 	push	hl
-                           5860 ; genIpush
-   0038 3E 02              5861 	ld	a,#0x02
-   003A F5                 5862 	push	af
-   003B 33                 5863 	inc	sp
-                           5864 ; genIpush
-   003C 3E 00              5865 	ld	a,#0x00
-   003E F5                 5866 	push	af
-   003F 33                 5867 	inc	sp
-                           5868 ; genCall
-   0040 CD 00 00           5869 	call	_set_sprite_data
-   0043 E8 04              5870 	lda	sp,4(sp)
-                           5871 ;	main.c 30
-                           5872 ; genIpush
-   0045 3E 00              5873 	ld	a,#0x00
-   0047 F5                 5874 	push	af
-   0048 33                 5875 	inc	sp
-                           5876 ; genIpush
-   0049 3E 00              5877 	ld	a,#0x00
-   004B F5                 5878 	push	af
-   004C 33                 5879 	inc	sp
-                           5880 ; genCall
-   004D CD 00 00           5881 	call	_set_sprite_tile
-   0050 E8 02              5882 	lda	sp,2(sp)
-                           5883 ;	main.c 31
-                           5884 ; genCast
-                           5885 ; AOP_HL for _posicaoYPlayer
-   0052 21 AD 03           5886 	ld	hl,#_posicaoYPlayer + 0
-   0055 4E                 5887 	ld	c,(hl)
-                           5888 ; genCast
-                           5889 ; AOP_HL for _posicaoXPlayer
-   0056 21 AB 03           5890 	ld	hl,#_posicaoXPlayer + 0
-   0059 46                 5891 	ld	b,(hl)
-                           5892 ; genIpush
-   005A 79                 5893 	ld	a,c
-   005B F5                 5894 	push	af
-   005C 33                 5895 	inc	sp
-                           5896 ; genIpush
-   005D 78                 5897 	ld	a,b
-   005E F5                 5898 	push	af
-   005F 33                 5899 	inc	sp
-                           5900 ; genIpush
-   0060 3E 00              5901 	ld	a,#0x00
-   0062 F5                 5902 	push	af
-   0063 33                 5903 	inc	sp
-                           5904 ; genCall
-   0064 CD 00 00           5905 	call	_move_sprite
-   0067 E8 03              5906 	lda	sp,3(sp)
-                           5907 ;	main.c 32
-                           5908 ; genOr
-                           5909 ; AOP_SFR for _LCDC_REG
-                           5910 ; Type res[4] = l[4]&r[1]
-                           5911 ; Size res[1] = l[1]&r[1]
-   0069 F0 00              5912 	ldh	a,(_LCDC_REG+0) ; x
-   006B F6 02              5913 	or	a,#0x02
-   006D E0 00              5914 	ldh	(_LCDC_REG+0),a
-                           5915 ;	main.c 34
-                           5916 ; genLabel
-   006F                    5917 00108$:
-                           5918 ;	main.c 37
-                           5919 ; genCall
-   006F CD D6 00           5920 	call	_cair
-                           5921 ;	main.c 39
-                           5922 ; genCmpLt
-                           5923 ; AOP_HL for _posicaoXPlayer
-   0072 21 AB 03           5924 	ld	hl,#_posicaoXPlayer + 0
-   0075 5E                 5925 	ld	e,(hl)
-   0076 23                 5926 	inc	hl
-   0077 7E                 5927 	ld	a,(hl)
-   0078 EE 80              5928 	xor	a,#0x80
-   007A 57                 5929 	ld	d,a
-   007B 21 18 7C           5930 	ld	hl,#0x7C18
-   007E 19                 5931 	add	hl,de
-   007F D2 92 00           5932 	jp	nc,00105$
-                           5933 ;	main.c 40
-                           5934 ; genIpush
-   0082 3E 00              5935 	ld	a,#0x00
-   0084 F5                 5936 	push	af
-   0085 33                 5937 	inc	sp
-                           5938 ; genIpush
-   0086 3E 0A              5939 	ld	a,#0x0A
-   0088 F5                 5940 	push	af
-   0089 33                 5941 	inc	sp
-                           5942 ; genCall
-   008A CD 00 00           5943 	call	_scroll_bkg
-   008D E8 02              5944 	lda	sp,2(sp)
-                           5945 ; genGoto
-   008F C3 B5 00           5946 	jp	00106$
-                           5947 ; genLabel
-   0092                    5948 00105$:
-                           5949 ;	main.c 41
-                           5950 ; genCmpGt
-                           5951 ; AOP_HL for _posicaoXPlayer
-   0092 21 AB 03           5952 	ld	hl,#_posicaoXPlayer + 0
-   0095 5E                 5953 	ld	e,(hl)
-   0096 23                 5954 	inc	hl
-   0097 7E                 5955 	ld	a,(hl)
-   0098 EE 80              5956 	xor	a,#0x80
-   009A 57                 5957 	ld	d,a
-   009B 21 C8 80           5958 	ld	hl,#0x80C8
-   009E 19                 5959 	add	hl,de
-   009F DA B2 00           5960 	jp	c,00102$
-                           5961 ;	main.c 42
-                           5962 ; genIpush
-   00A2 3E 00              5963 	ld	a,#0x00
-   00A4 F5                 5964 	push	af
-   00A5 33                 5965 	inc	sp
-                           5966 ; genIpush
-   00A6 3E F6              5967 	ld	a,#0xF6
-   00A8 F5                 5968 	push	af
-   00A9 33                 5969 	inc	sp
-                           5970 ; genCall
-   00AA CD 00 00           5971 	call	_scroll_bkg
-   00AD E8 02              5972 	lda	sp,2(sp)
-                           5973 ; genGoto
-   00AF C3 B5 00           5974 	jp	00106$
-                           5975 ; genLabel
-   00B2                    5976 00102$:
-                           5977 ;	main.c 44
-                           5978 ; genCall
-   00B2 CD 34 01           5979 	call	_executarControle
-                           5980 ; genLabel
-   00B5                    5981 00106$:
-                           5982 ;	main.c 46
-                           5983 ; genIpush
-   00B5 21 32 00           5984 	ld	hl,#0x0032
-   00B8 E5                 5985 	push	hl
-                           5986 ; genCall
-   00B9 CD 00 00           5987 	call	_delay
-   00BC E8 02              5988 	lda	sp,2(sp)
-                           5989 ; genGoto
-   00BE C3 6F 00           5990 	jp	00108$
-                           5991 ; genLabel
-   00C1                    5992 00110$:
-                           5993 ; genEndFunction
-                           5994 	
-   00C1 C1                 5995 	pop	bc
-   00C2 C9                 5996 	ret
-   00C3                    5997 ___main_end:
-                           5998 ;	main.c 50
-                           5999 ; genLabel
-                           6000 ; genFunction
-                           6001 ;	---------------------------------
-                           6002 ; Function iniciarHardware
-                           6003 ; ---------------------------------
-   00C3                    6004 ___iniciarHardware_start:
-   00C3                    6005 _iniciarHardware:
-                           6006 	
-                           6007 ;	main.c 51
-                           6008 ; genOr
-                           6009 ; AOP_SFR for _LCDC_REG
-                           6010 ; Type res[4] = l[4]&r[1]
-                           6011 ; Size res[1] = l[1]&r[1]
-   00C3 F0 00              6012 	ldh	a,(_LCDC_REG+0) ; x
-   00C5 F6 80              6013 	or	a,#0x80
-   00C7 E0 00              6014 	ldh	(_LCDC_REG+0),a
-                           6015 ;	main.c 52
-                           6016 ; genAssign
-                           6017 ; AOP_SFR for _NR52_REG
-   00C9 3E 8F              6018 	ld	a,#0x8F
-   00CB E0 00              6019 	ldh	(_NR52_REG+0),a
-                           6020 ;	main.c 53
-                           6021 ; genAssign
-                           6022 ; AOP_SFR for _NR51_REG
-   00CD 3E 11              6023 	ld	a,#0x11
-   00CF E0 00              6024 	ldh	(_NR51_REG+0),a
-                           6025 ;	main.c 54
-                           6026 ; genAssign
-                           6027 ; AOP_SFR for _NR50_REG
-   00D1 3E 77              6028 	ld	a,#0x77
-   00D3 E0 00              6029 	ldh	(_NR50_REG+0),a
-                           6030 ; genLabel
-   00D5                    6031 00101$:
-                           6032 ; genEndFunction
-                           6033 	
-   00D5 C9                 6034 	ret
-   00D6                    6035 ___iniciarHardware_end:
-                           6036 ;	main.c 57
-                           6037 ; genLabel
-                           6038 ; genFunction
-                           6039 ;	---------------------------------
-                           6040 ; Function cair
-                           6041 ; ---------------------------------
-   00D6                    6042 ___cair_start:
-   00D6                    6043 _cair:
-   00D6 C5                 6044 	push	bc
-                           6045 	
-                           6046 ;	main.c 58
-                           6047 ; genCall
-   00D7 CD DD 01           6048 	call	_retornarAlturaChao
-   00DA 42                 6049 	ld	b,d
-   00DB 4B                 6050 	ld	c,e
-                           6051 ; genCmpGt
-                           6052 ; AOP_HL for _posicaoYPlayer
-   00DC 21 AE 03           6053 	ld	hl,#_posicaoYPlayer + 0 + 1
-   00DF 7E                 6054 	ld	a,(hl)
-   00E0 EE 80              6055 	xor	a,#0x80
-   00E2 5F                 6056 	ld	e,a
-   00E3 78                 6057 	ld	a,b
-   00E4 EE 80              6058 	xor	a,#0x80
-   00E6 57                 6059 	ld	d,a
-   00E7 2B                 6060 	dec	hl
-   00E8 7E                 6061 	ld	a,(hl)
-   00E9 99                 6062 	sbc	a,c ; 2
-   00EA 7B                 6063 	ld	a,e
-   00EB 9A                 6064 	sbc	a,d
-   00EC D2 0F 01           6065 	jp	nc,00102$
-                           6066 ;	main.c 59
-                           6067 ; genPlus
-                           6068 ; AOP_HL for _posicaoYPlayer
-                           6069 ; genPlusIncr
-                           6070 ;	genPlusIncr failed
-   00EF 7E                 6071 	ld	a,(hl)
-   00F0 C6 05              6072 	add	a,#0x05
-   00F2 22                 6073 	ld	(hl+),a
-   00F3 7E                 6074 	ld	a,(hl)
-   00F4 CE 00              6075 	adc	a,#0x00
-   00F6 77                 6076 	ld	(hl),a
-                           6077 ;	main.c 60
-                           6078 ; genCast
-                           6079 ; AOP_HL for _posicaoYPlayer
-   00F7 2B                 6080 	dec	hl
-   00F8 4E                 6081 	ld	c,(hl)
-                           6082 ; genCast
-                           6083 ; AOP_HL for _posicaoXPlayer
-   00F9 21 AB 03           6084 	ld	hl,#_posicaoXPlayer + 0
-   00FC 46                 6085 	ld	b,(hl)
-                           6086 ; genIpush
-   00FD 79                 6087 	ld	a,c
-   00FE F5                 6088 	push	af
-   00FF 33                 6089 	inc	sp
-                           6090 ; genIpush
-   0100 78                 6091 	ld	a,b
-   0101 F5                 6092 	push	af
-   0102 33                 6093 	inc	sp
-                           6094 ; genIpush
-   0103 3E 00              6095 	ld	a,#0x00
-   0105 F5                 6096 	push	af
-   0106 33                 6097 	inc	sp
-                           6098 ; genCall
-   0107 CD 00 00           6099 	call	_move_sprite
-   010A E8 03              6100 	lda	sp,3(sp)
-                           6101 ; genGoto
-   010C C3 14 01           6102 	jp	00104$
+                           5796 ; code
+                           5797 ;--------------------------------------------------------
+                           5798 	.area _CODE
+                           5799 ;	main.c 20
+                           5800 ; genLabel
+                           5801 ; genFunction
+                           5802 ;	---------------------------------
+                           5803 ; Function main
+                           5804 ; ---------------------------------
+   0000                    5805 ___main_start:
+   0000                    5806 _main:
+   0000 C5                 5807 	push	bc
+                           5808 	
+                           5809 ;	main.c 21
+                           5810 ; genCall
+   0001 CD C3 00           5811 	call	_iniciarHardware
+                           5812 ;	main.c 24
+                           5813 ; genIpush
+   0004 21 4A 03           5814 	ld	hl,#_background_sprite + 0
+   0007 E5                 5815 	push	hl
+                           5816 ; genIpush
+   0008 3E 06              5817 	ld	a,#0x06
+   000A F5                 5818 	push	af
+   000B 33                 5819 	inc	sp
+                           5820 ; genIpush
+   000C 3E 00              5821 	ld	a,#0x00
+   000E F5                 5822 	push	af
+   000F 33                 5823 	inc	sp
+                           5824 ; genCall
+   0010 CD 00 00           5825 	call	_set_bkg_data
+   0013 E8 04              5826 	lda	sp,4(sp)
+                           5827 ;	main.c 25
+                           5828 ; genIpush
+   0015 21 20 00           5829 	ld	hl,#_background + 0
+   0018 E5                 5830 	push	hl
+                           5831 ; genIpush
+   0019 3E 12              5832 	ld	a,#0x12
+   001B F5                 5833 	push	af
+   001C 33                 5834 	inc	sp
+                           5835 ; genIpush
+   001D 3E 2D              5836 	ld	a,#0x2D
+   001F F5                 5837 	push	af
+   0020 33                 5838 	inc	sp
+                           5839 ; genIpush
+   0021 3E 00              5840 	ld	a,#0x00
+   0023 F5                 5841 	push	af
+   0024 33                 5842 	inc	sp
+                           5843 ; genIpush
+   0025 3E 00              5844 	ld	a,#0x00
+   0027 F5                 5845 	push	af
+   0028 33                 5846 	inc	sp
+                           5847 ; genCall
+   0029 CD 00 00           5848 	call	_set_bkg_tiles
+   002C E8 06              5849 	lda	sp,6(sp)
+                           5850 ;	main.c 26
+                           5851 ; genOr
+                           5852 ; AOP_SFR for _LCDC_REG
+                           5853 ; Type res[4] = l[4]&r[1]
+                           5854 ; Size res[1] = l[1]&r[1]
+   002E F0 00              5855 	ldh	a,(_LCDC_REG+0) ; x
+   0030 F6 01              5856 	or	a,#0x01
+   0032 E0 00              5857 	ldh	(_LCDC_REG+0),a
+                           5858 ;	main.c 29
+                           5859 ; genIpush
+   0034 21 00 00           5860 	ld	hl,#_carinha + 0
+   0037 E5                 5861 	push	hl
+                           5862 ; genIpush
+   0038 3E 02              5863 	ld	a,#0x02
+   003A F5                 5864 	push	af
+   003B 33                 5865 	inc	sp
+                           5866 ; genIpush
+   003C 3E 00              5867 	ld	a,#0x00
+   003E F5                 5868 	push	af
+   003F 33                 5869 	inc	sp
+                           5870 ; genCall
+   0040 CD 00 00           5871 	call	_set_sprite_data
+   0043 E8 04              5872 	lda	sp,4(sp)
+                           5873 ;	main.c 30
+                           5874 ; genIpush
+   0045 3E 00              5875 	ld	a,#0x00
+   0047 F5                 5876 	push	af
+   0048 33                 5877 	inc	sp
+                           5878 ; genIpush
+   0049 3E 00              5879 	ld	a,#0x00
+   004B F5                 5880 	push	af
+   004C 33                 5881 	inc	sp
+                           5882 ; genCall
+   004D CD 00 00           5883 	call	_set_sprite_tile
+   0050 E8 02              5884 	lda	sp,2(sp)
+                           5885 ;	main.c 31
+                           5886 ; genCast
+                           5887 ; AOP_HL for _posicaoYPlayer
+   0052 21 AE 03           5888 	ld	hl,#_posicaoYPlayer + 0
+   0055 4E                 5889 	ld	c,(hl)
+                           5890 ; genCast
+                           5891 ; AOP_HL for _posicaoXPlayer
+   0056 21 AC 03           5892 	ld	hl,#_posicaoXPlayer + 0
+   0059 46                 5893 	ld	b,(hl)
+                           5894 ; genIpush
+   005A 79                 5895 	ld	a,c
+   005B F5                 5896 	push	af
+   005C 33                 5897 	inc	sp
+                           5898 ; genIpush
+   005D 78                 5899 	ld	a,b
+   005E F5                 5900 	push	af
+   005F 33                 5901 	inc	sp
+                           5902 ; genIpush
+   0060 3E 00              5903 	ld	a,#0x00
+   0062 F5                 5904 	push	af
+   0063 33                 5905 	inc	sp
+                           5906 ; genCall
+   0064 CD 00 00           5907 	call	_move_sprite
+   0067 E8 03              5908 	lda	sp,3(sp)
+                           5909 ;	main.c 32
+                           5910 ; genOr
+                           5911 ; AOP_SFR for _LCDC_REG
+                           5912 ; Type res[4] = l[4]&r[1]
+                           5913 ; Size res[1] = l[1]&r[1]
+   0069 F0 00              5914 	ldh	a,(_LCDC_REG+0) ; x
+   006B F6 02              5915 	or	a,#0x02
+   006D E0 00              5916 	ldh	(_LCDC_REG+0),a
+                           5917 ;	main.c 34
+                           5918 ; genLabel
+   006F                    5919 00108$:
+                           5920 ;	main.c 37
+                           5921 ; genCall
+   006F CD D6 00           5922 	call	_cair
+                           5923 ;	main.c 39
+                           5924 ; genCmpLt
+                           5925 ; AOP_HL for _posicaoXPlayer
+   0072 21 AC 03           5926 	ld	hl,#_posicaoXPlayer + 0
+   0075 5E                 5927 	ld	e,(hl)
+   0076 23                 5928 	inc	hl
+   0077 7E                 5929 	ld	a,(hl)
+   0078 EE 80              5930 	xor	a,#0x80
+   007A 57                 5931 	ld	d,a
+   007B 21 18 7C           5932 	ld	hl,#0x7C18
+   007E 19                 5933 	add	hl,de
+   007F D2 92 00           5934 	jp	nc,00105$
+                           5935 ;	main.c 40
+                           5936 ; genIpush
+   0082 3E 00              5937 	ld	a,#0x00
+   0084 F5                 5938 	push	af
+   0085 33                 5939 	inc	sp
+                           5940 ; genIpush
+   0086 3E 0A              5941 	ld	a,#0x0A
+   0088 F5                 5942 	push	af
+   0089 33                 5943 	inc	sp
+                           5944 ; genCall
+   008A CD 00 00           5945 	call	_scroll_bkg
+   008D E8 02              5946 	lda	sp,2(sp)
+                           5947 ; genGoto
+   008F C3 B5 00           5948 	jp	00106$
+                           5949 ; genLabel
+   0092                    5950 00105$:
+                           5951 ;	main.c 41
+                           5952 ; genCmpGt
+                           5953 ; AOP_HL for _posicaoXPlayer
+   0092 21 AC 03           5954 	ld	hl,#_posicaoXPlayer + 0
+   0095 5E                 5955 	ld	e,(hl)
+   0096 23                 5956 	inc	hl
+   0097 7E                 5957 	ld	a,(hl)
+   0098 EE 80              5958 	xor	a,#0x80
+   009A 57                 5959 	ld	d,a
+   009B 21 C8 80           5960 	ld	hl,#0x80C8
+   009E 19                 5961 	add	hl,de
+   009F DA B2 00           5962 	jp	c,00102$
+                           5963 ;	main.c 42
+                           5964 ; genIpush
+   00A2 3E 00              5965 	ld	a,#0x00
+   00A4 F5                 5966 	push	af
+   00A5 33                 5967 	inc	sp
+                           5968 ; genIpush
+   00A6 3E F6              5969 	ld	a,#0xF6
+   00A8 F5                 5970 	push	af
+   00A9 33                 5971 	inc	sp
+                           5972 ; genCall
+   00AA CD 00 00           5973 	call	_scroll_bkg
+   00AD E8 02              5974 	lda	sp,2(sp)
+                           5975 ; genGoto
+   00AF C3 B5 00           5976 	jp	00106$
+                           5977 ; genLabel
+   00B2                    5978 00102$:
+                           5979 ;	main.c 44
+                           5980 ; genCall
+   00B2 CD 5E 01           5981 	call	_executarControle
+                           5982 ; genLabel
+   00B5                    5983 00106$:
+                           5984 ;	main.c 46
+                           5985 ; genIpush
+   00B5 21 50 00           5986 	ld	hl,#0x0050
+   00B8 E5                 5987 	push	hl
+                           5988 ; genCall
+   00B9 CD 00 00           5989 	call	_delay
+   00BC E8 02              5990 	lda	sp,2(sp)
+                           5991 ; genGoto
+   00BE C3 6F 00           5992 	jp	00108$
+                           5993 ; genLabel
+   00C1                    5994 00110$:
+                           5995 ; genEndFunction
+                           5996 	
+   00C1 C1                 5997 	pop	bc
+   00C2 C9                 5998 	ret
+   00C3                    5999 ___main_end:
+                           6000 ;	main.c 50
+                           6001 ; genLabel
+                           6002 ; genFunction
+                           6003 ;	---------------------------------
+                           6004 ; Function iniciarHardware
+                           6005 ; ---------------------------------
+   00C3                    6006 ___iniciarHardware_start:
+   00C3                    6007 _iniciarHardware:
+                           6008 	
+                           6009 ;	main.c 51
+                           6010 ; genOr
+                           6011 ; AOP_SFR for _LCDC_REG
+                           6012 ; Type res[4] = l[4]&r[1]
+                           6013 ; Size res[1] = l[1]&r[1]
+   00C3 F0 00              6014 	ldh	a,(_LCDC_REG+0) ; x
+   00C5 F6 80              6015 	or	a,#0x80
+   00C7 E0 00              6016 	ldh	(_LCDC_REG+0),a
+                           6017 ;	main.c 52
+                           6018 ; genAssign
+                           6019 ; AOP_SFR for _NR52_REG
+   00C9 3E 8F              6020 	ld	a,#0x8F
+   00CB E0 00              6021 	ldh	(_NR52_REG+0),a
+                           6022 ;	main.c 53
+                           6023 ; genAssign
+                           6024 ; AOP_SFR for _NR51_REG
+   00CD 3E 11              6025 	ld	a,#0x11
+   00CF E0 00              6026 	ldh	(_NR51_REG+0),a
+                           6027 ;	main.c 54
+                           6028 ; genAssign
+                           6029 ; AOP_SFR for _NR50_REG
+   00D1 3E 77              6030 	ld	a,#0x77
+   00D3 E0 00              6031 	ldh	(_NR50_REG+0),a
+                           6032 ; genLabel
+   00D5                    6033 00101$:
+                           6034 ; genEndFunction
+                           6035 	
+   00D5 C9                 6036 	ret
+   00D6                    6037 ___iniciarHardware_end:
+                           6038 ;	main.c 57
+                           6039 ; genLabel
+                           6040 ; genFunction
+                           6041 ;	---------------------------------
+                           6042 ; Function cair
+                           6043 ; ---------------------------------
+   00D6                    6044 ___cair_start:
+   00D6                    6045 _cair:
+   00D6 C5                 6046 	push	bc
+                           6047 	
+                           6048 ;	main.c 58
+                           6049 ; genCall
+   00D7 CD 27 02           6050 	call	_retornarAlturaChao
+   00DA 42                 6051 	ld	b,d
+   00DB 4B                 6052 	ld	c,e
+                           6053 ; genCmpGt
+                           6054 ; AOP_HL for _posicaoYPlayer
+   00DC 21 AF 03           6055 	ld	hl,#_posicaoYPlayer + 0 + 1
+   00DF 7E                 6056 	ld	a,(hl)
+   00E0 EE 80              6057 	xor	a,#0x80
+   00E2 5F                 6058 	ld	e,a
+   00E3 78                 6059 	ld	a,b
+   00E4 EE 80              6060 	xor	a,#0x80
+   00E6 57                 6061 	ld	d,a
+   00E7 2B                 6062 	dec	hl
+   00E8 7E                 6063 	ld	a,(hl)
+   00E9 99                 6064 	sbc	a,c ; 2
+   00EA 7B                 6065 	ld	a,e
+   00EB 9A                 6066 	sbc	a,d
+   00EC D2 0C 01           6067 	jp	nc,00102$
+                           6068 ;	main.c 59
+                           6069 ; genPlus
+                           6070 ; AOP_HL for _posicaoYPlayer
+                           6071 ; genPlusIncr
+                           6072 ;	genPlusIncr failed
+   00EF 7E                 6073 	ld	a,(hl)
+   00F0 C6 05              6074 	add	a,#0x05
+   00F2 22                 6075 	ld	(hl+),a
+   00F3 7E                 6076 	ld	a,(hl)
+   00F4 CE 00              6077 	adc	a,#0x00
+   00F6 77                 6078 	ld	(hl),a
+                           6079 ;	main.c 60
+                           6080 ; genCast
+                           6081 ; AOP_HL for _posicaoYPlayer
+   00F7 2B                 6082 	dec	hl
+   00F8 4E                 6083 	ld	c,(hl)
+                           6084 ; genCast
+                           6085 ; AOP_HL for _posicaoXPlayer
+   00F9 21 AC 03           6086 	ld	hl,#_posicaoXPlayer + 0
+   00FC 46                 6087 	ld	b,(hl)
+                           6088 ; genIpush
+   00FD 79                 6089 	ld	a,c
+   00FE F5                 6090 	push	af
+   00FF 33                 6091 	inc	sp
+                           6092 ; genIpush
+   0100 78                 6093 	ld	a,b
+   0101 F5                 6094 	push	af
+   0102 33                 6095 	inc	sp
+                           6096 ; genIpush
+   0103 3E 00              6097 	ld	a,#0x00
+   0105 F5                 6098 	push	af
+   0106 33                 6099 	inc	sp
+                           6100 ; genCall
+   0107 CD 00 00           6101 	call	_move_sprite
+   010A E8 03              6102 	lda	sp,3(sp)
                            6103 ; genLabel
-   010F                    6104 00102$:
+   010C                    6104 00102$:
                            6105 ;	main.c 62
-                           6106 ; genAssign
-                           6107 ; AOP_HL for _pulando
-   010F 21 AA 03           6108 	ld	hl,#_pulando + 0
-   0112 36 00              6109 	ld	(hl),#0x00
-                           6110 ; genLabel
-   0114                    6111 00104$:
-                           6112 ; genEndFunction
-                           6113 	
-   0114 C1                 6114 	pop	bc
-   0115 C9                 6115 	ret
-   0116                    6116 ___cair_end:
-                           6117 ;	main.c 66
-                           6118 ; genLabel
-                           6119 ; genFunction
-                           6120 ;	---------------------------------
-                           6121 ; Function pular
-                           6122 ; ---------------------------------
-   0116                    6123 ___pular_start:
-   0116                    6124 _pular:
-                           6125 	
-                           6126 ;	main.c 67
-                           6127 ; genCmpEq
-                           6128 ; AOP_HL for _pulando
-   0116 21 AA 03           6129 	ld	hl,#_pulando + 0
-   0119 7E                 6130 	ld	a,(hl)
-   011A B7                 6131 	or	a,a
-   011B C2 20 01           6132 	jp	nz,00106$
-   011E 18 03              6133 	jr	00107$
-   0120                    6134 00106$:
-   0120 C3 33 01           6135 	jp	00103$
-   0123                    6136 00107$:
-                           6137 ;	main.c 68
-                           6138 ; genAssign
-                           6139 ; AOP_HL for _pulando
-   0123 21 AA 03           6140 	ld	hl,#_pulando + 0
-   0126 36 01              6141 	ld	(hl),#0x01
-                           6142 ;	main.c 69
-                           6143 ; genMinus
-                           6144 ; AOP_HL for _posicaoYPlayer
-   0128 21 AD 03           6145 	ld	hl,#_posicaoYPlayer + 0
-   012B 7E                 6146 	ld	a,(hl)
-   012C C6 C4              6147 	add	a,#0xC4
-   012E 22                 6148 	ld	(hl+),a
-   012F 7E                 6149 	ld	a,(hl)
-   0130 CE FF              6150 	adc	a,#0xFF
-   0132 77                 6151 	ld	(hl),a
-                           6152 ; genLabel
-   0133                    6153 00103$:
-                           6154 ; genEndFunction
-                           6155 	
-   0133 C9                 6156 	ret
-   0134                    6157 ___pular_end:
-                           6158 ;	main.c 73
-                           6159 ; genLabel
-                           6160 ; genFunction
-                           6161 ;	---------------------------------
-                           6162 ; Function executarControle
-                           6163 ; ---------------------------------
-   0134                    6164 ___executarControle_start:
-   0134                    6165 _executarControle:
-   0134 C5                 6166 	push	bc
-                           6167 	
-                           6168 ;	main.c 74
-                           6169 ; genCall
-   0135 CD 00 00           6170 	call	_joypad
-   0138 4B                 6171 	ld	c,e
-                           6172 ; genCmpEq
-   0139 79                 6173 	ld	a,c ; 2
-   013A FE 01              6174 	cp	a,#0x01
-                           6175 ; Rule 5
-   013C CA 8B 01           6176 	jp	z,00103$
-   013F                    6177 00116$:
-                           6178 ; genCmpEq
-   013F 79                 6179 	ld	a,c ; 2
-   0140 FE 02              6180 	cp	a,#0x02
-                           6181 ; Rule 5
-   0142 CA 6C 01           6182 	jp	z,00101$
-   0145                    6183 00117$:
-                           6184 ; genCmpEq
-   0145 79                 6185 	ld	a,c ; 2
-   0146 FE 10              6186 	cp	a,#0x10
-                           6187 ; Rule 5
-   0148 CA B0 01           6188 	jp	z,00106$
-   014B                    6189 00118$:
-                           6190 ; genCmpEq
-   014B 79                 6191 	ld	a,c ; 2
-   014C FE 20              6192 	cp	a,#0x20
-                           6193 ; Rule 5
-   014E CA AA 01           6194 	jp	z,00105$
-   0151                    6195 00119$:
-                           6196 ; genCast
-                           6197 ; Removed redundent load
-   0151 06 00              6198 	ld	b,#0x00
-                           6199 ; genCmpEq
-   0153 79                 6200 	ld	a,c ; 2
-   0154 FE 21              6201 	cp	a,#0x21
-   0156 C2 5E 01           6202 	jp	nz,00120$
-   0159 78                 6203 	ld	a,b ; 2
-                           6204 ; Rule 3
-   015A B7                 6205 	or	a,a
-                           6206 ; Rule 5
-   015B CA 99 01           6207 	jp	z,00104$
-   015E                    6208 00120$:
-                           6209 ; genCmpEq
-   015E 79                 6210 	ld	a,c ; 2
-   015F FE 22              6211 	cp	a,#0x22
-   0161 C2 69 01           6212 	jp	nz,00121$
-   0164 78                 6213 	ld	a,b ; 2
-                           6214 ; Rule 3
-   0165 B7                 6215 	or	a,a
+                           6106 ; genCmpEq
+                           6107 ; AOP_HL for _posicaoYPlayer
+   010C 21 AE 03           6108 	ld	hl,#_posicaoYPlayer + 0
+   010F 7E                 6109 	ld	a,(hl) ; 2
+   0110 FE 87              6110 	cp	a,#0x87
+   0112 C2 1D 01           6111 	jp	nz,00109$
+   0115 23                 6112 	inc	hl
+   0116 7E                 6113 	ld	a,(hl) ; 2
+                           6114 ; Rule 3
+   0117 B7                 6115 	or	a,a
+   0118 C2 1D 01           6116 	jp	nz,00109$
+   011B 18 03              6117 	jr	00110$
+   011D                    6118 00109$:
+   011D C3 28 01           6119 	jp	00105$
+   0120                    6120 00110$:
+                           6121 ;	main.c 63
+                           6122 ; genAssign
+                           6123 ; AOP_HL for _pulando
+   0120 21 AA 03           6124 	ld	hl,#_pulando + 0
+   0123 36 00              6125 	ld	(hl),#0x00
+   0125 23                 6126 	inc	hl
+   0126 36 00              6127 	ld	(hl),#0x00
+                           6128 ; genLabel
+   0128                    6129 00105$:
+                           6130 ; genEndFunction
+                           6131 	
+   0128 C1                 6132 	pop	bc
+   0129 C9                 6133 	ret
+   012A                    6134 ___cair_end:
+                           6135 ;	main.c 67
+                           6136 ; genLabel
+                           6137 ; genFunction
+                           6138 ;	---------------------------------
+                           6139 ; Function pular
+                           6140 ; ---------------------------------
+   012A                    6141 ___pular_start:
+   012A                    6142 _pular:
+                           6143 	
+                           6144 ;	main.c 68
+                           6145 ; genPlus
+                           6146 ; AOP_HL for _pulando
+                           6147 ; genPlusIncr
+   012A 21 AA 03           6148 	ld	hl,#_pulando + 0
+   012D 34                 6149 	inc	(hl)
+   012E 20 02              6150 	jr	nz,00108$
+   0130 23                 6151 	inc	hl
+   0131 34                 6152 	inc	(hl)
+   0132                    6153 00108$:
+                           6154 ;	main.c 69
+                           6155 ; genCmpGt
+                           6156 ; AOP_HL for _posicaoYPlayer
+   0132 21 AE 03           6157 	ld	hl,#_posicaoYPlayer + 0
+   0135 5E                 6158 	ld	e,(hl)
+   0136 23                 6159 	inc	hl
+   0137 7E                 6160 	ld	a,(hl)
+   0138 EE 80              6161 	xor	a,#0x80
+   013A 57                 6162 	ld	d,a
+   013B 21 A6 7F           6163 	ld	hl,#0x7FA6
+   013E 19                 6164 	add	hl,de
+   013F D2 5D 01           6165 	jp	nc,00104$
+                           6166 ; genCmpLt
+                           6167 ; AOP_HL for _pulando
+   0142 21 AA 03           6168 	ld	hl,#_pulando + 0
+   0145 5E                 6169 	ld	e,(hl)
+   0146 23                 6170 	inc	hl
+   0147 7E                 6171 	ld	a,(hl)
+   0148 EE 80              6172 	xor	a,#0x80
+   014A 57                 6173 	ld	d,a
+   014B 21 F6 7F           6174 	ld	hl,#0x7FF6
+   014E 19                 6175 	add	hl,de
+   014F DA 5D 01           6176 	jp	c,00104$
+                           6177 ;	main.c 70
+                           6178 ; genMinus
+                           6179 ; AOP_HL for _posicaoYPlayer
+   0152 21 AE 03           6180 	ld	hl,#_posicaoYPlayer + 0
+   0155 7E                 6181 	ld	a,(hl)
+   0156 C6 F6              6182 	add	a,#0xF6
+   0158 22                 6183 	ld	(hl+),a
+   0159 7E                 6184 	ld	a,(hl)
+   015A CE FF              6185 	adc	a,#0xFF
+   015C 77                 6186 	ld	(hl),a
+                           6187 ; genLabel
+   015D                    6188 00104$:
+                           6189 ; genEndFunction
+                           6190 	
+   015D C9                 6191 	ret
+   015E                    6192 ___pular_end:
+                           6193 ;	main.c 74
+                           6194 ; genLabel
+                           6195 ; genFunction
+                           6196 ;	---------------------------------
+                           6197 ; Function executarControle
+                           6198 ; ---------------------------------
+   015E                    6199 ___executarControle_start:
+   015E                    6200 _executarControle:
+   015E C5                 6201 	push	bc
+                           6202 	
+                           6203 ;	main.c 75
+                           6204 ; genCall
+   015F CD 00 00           6205 	call	_joypad
+   0162 4B                 6206 	ld	c,e
+                           6207 ; genCmpEq
+   0163 79                 6208 	ld	a,c ; 2
+   0164 FE 01              6209 	cp	a,#0x01
+                           6210 ; Rule 5
+   0166 CA D5 01           6211 	jp	z,00107$
+   0169                    6212 00122$:
+                           6213 ; genCmpEq
+   0169 79                 6214 	ld	a,c ; 2
+   016A FE 02              6215 	cp	a,#0x02
                            6216 ; Rule 5
-   0166 CA 7A 01           6217 	jp	z,00102$
-   0169                    6218 00121$:
-                           6219 ; genGoto
-   0169 C3 C0 01           6220 	jp	00107$
-                           6221 ;	main.c 76
-                           6222 ; genLabel
-   016C                    6223 00101$:
-                           6224 ; genMinus
-                           6225 ; AOP_HL for _posicaoXPlayer
-   016C 21 AB 03           6226 	ld	hl,#_posicaoXPlayer + 0
-   016F 7E                 6227 	ld	a,(hl)
-   0170 C6 FB              6228 	add	a,#0xFB
-   0172 22                 6229 	ld	(hl+),a
-   0173 7E                 6230 	ld	a,(hl)
-   0174 CE FF              6231 	adc	a,#0xFF
-   0176 77                 6232 	ld	(hl),a
-                           6233 ;	main.c 77
-                           6234 ; genGoto
-   0177 C3 C0 01           6235 	jp	00107$
-                           6236 ;	main.c 79
-                           6237 ; genLabel
-   017A                    6238 00102$:
-                           6239 ; genMinus
-                           6240 ; AOP_HL for _posicaoXPlayer
-   017A 21 AB 03           6241 	ld	hl,#_posicaoXPlayer + 0
-   017D 7E                 6242 	ld	a,(hl)
-   017E C6 FB              6243 	add	a,#0xFB
-   0180 22                 6244 	ld	(hl+),a
-   0181 7E                 6245 	ld	a,(hl)
-   0182 CE FF              6246 	adc	a,#0xFF
-   0184 77                 6247 	ld	(hl),a
-                           6248 ;	main.c 80
-                           6249 ; genCall
-   0185 CD 16 01           6250 	call	_pular
-                           6251 ;	main.c 81
-                           6252 ; genGoto
-   0188 C3 C0 01           6253 	jp	00107$
-                           6254 ;	main.c 83
-                           6255 ; genLabel
-   018B                    6256 00103$:
-                           6257 ; genPlus
-                           6258 ; AOP_HL for _posicaoXPlayer
-                           6259 ; genPlusIncr
-                           6260 ;	genPlusIncr failed
-   018B 21 AB 03           6261 	ld	hl,#_posicaoXPlayer + 0
-   018E 7E                 6262 	ld	a,(hl)
-   018F C6 05              6263 	add	a,#0x05
-   0191 22                 6264 	ld	(hl+),a
-   0192 7E                 6265 	ld	a,(hl)
-   0193 CE 00              6266 	adc	a,#0x00
-   0195 77                 6267 	ld	(hl),a
-                           6268 ;	main.c 84
-                           6269 ; genGoto
-   0196 C3 C0 01           6270 	jp	00107$
-                           6271 ;	main.c 86
-                           6272 ; genLabel
-   0199                    6273 00104$:
-                           6274 ; genPlus
-                           6275 ; AOP_HL for _posicaoXPlayer
-                           6276 ; genPlusIncr
-                           6277 ;	genPlusIncr failed
-   0199 21 AB 03           6278 	ld	hl,#_posicaoXPlayer + 0
-   019C 7E                 6279 	ld	a,(hl)
-   019D C6 05              6280 	add	a,#0x05
-   019F 22                 6281 	ld	(hl+),a
-   01A0 7E                 6282 	ld	a,(hl)
-   01A1 CE 00              6283 	adc	a,#0x00
-   01A3 77                 6284 	ld	(hl),a
-                           6285 ;	main.c 87
-                           6286 ; genCall
-   01A4 CD 16 01           6287 	call	_pular
-                           6288 ;	main.c 88
-                           6289 ; genGoto
-   01A7 C3 C0 01           6290 	jp	00107$
-                           6291 ;	main.c 90
-                           6292 ; genLabel
-   01AA                    6293 00105$:
-                           6294 ; genCall
-   01AA CD 16 01           6295 	call	_pular
-                           6296 ;	main.c 91
-                           6297 ; genGoto
-   01AD C3 C0 01           6298 	jp	00107$
-                           6299 ;	main.c 93
-                           6300 ; genLabel
-   01B0                    6301 00106$:
-                           6302 ; genIpush
+   016C CA 96 01           6217 	jp	z,00103$
+   016F                    6218 00123$:
+                           6219 ; genCmpEq
+   016F 79                 6220 	ld	a,c ; 2
+   0170 FE 10              6221 	cp	a,#0x10
+                           6222 ; Rule 5
+   0172 CA FA 01           6223 	jp	z,00110$
+   0175                    6224 00124$:
+                           6225 ; genCmpEq
+   0175 79                 6226 	ld	a,c ; 2
+   0176 FE 20              6227 	cp	a,#0x20
+                           6228 ; Rule 5
+   0178 CA F4 01           6229 	jp	z,00109$
+   017B                    6230 00125$:
+                           6231 ; genCast
+                           6232 ; Removed redundent load
+   017B 06 00              6233 	ld	b,#0x00
+                           6234 ; genCmpEq
+   017D 79                 6235 	ld	a,c ; 2
+   017E FE 21              6236 	cp	a,#0x21
+   0180 C2 88 01           6237 	jp	nz,00126$
+   0183 78                 6238 	ld	a,b ; 2
+                           6239 ; Rule 3
+   0184 B7                 6240 	or	a,a
+                           6241 ; Rule 5
+   0185 CA E3 01           6242 	jp	z,00108$
+   0188                    6243 00126$:
+                           6244 ; genCmpEq
+   0188 79                 6245 	ld	a,c ; 2
+   0189 FE 22              6246 	cp	a,#0x22
+   018B C2 93 01           6247 	jp	nz,00127$
+   018E 78                 6248 	ld	a,b ; 2
+                           6249 ; Rule 3
+   018F B7                 6250 	or	a,a
+                           6251 ; Rule 5
+   0190 CA B4 01           6252 	jp	z,00104$
+   0193                    6253 00127$:
+                           6254 ; genGoto
+   0193 C3 0A 02           6255 	jp	00111$
+                           6256 ;	main.c 80
+                           6257 ; genLabel
+   0196                    6258 00103$:
+                           6259 ;	main.c 77
+                           6260 ; genCmpLt
+                           6261 ; AOP_HL for _posicaoXPlayer
+   0196 21 AC 03           6262 	ld	hl,#_posicaoXPlayer + 0
+   0199 5E                 6263 	ld	e,(hl)
+   019A 23                 6264 	inc	hl
+   019B 7E                 6265 	ld	a,(hl)
+   019C EE 80              6266 	xor	a,#0x80
+   019E 57                 6267 	ld	d,a
+   019F 21 F6 7F           6268 	ld	hl,#0x7FF6
+   01A2 19                 6269 	add	hl,de
+   01A3 D2 0A 02           6270 	jp	nc,00111$
+                           6271 ;	main.c 78
+                           6272 ; genMinus
+                           6273 ; AOP_HL for _posicaoXPlayer
+   01A6 21 AC 03           6274 	ld	hl,#_posicaoXPlayer + 0
+   01A9 7E                 6275 	ld	a,(hl)
+   01AA C6 FB              6276 	add	a,#0xFB
+   01AC 22                 6277 	ld	(hl+),a
+   01AD 7E                 6278 	ld	a,(hl)
+   01AE CE FF              6279 	adc	a,#0xFF
+   01B0 77                 6280 	ld	(hl),a
+                           6281 ;	main.c 80
+                           6282 ; genGoto
+   01B1 C3 0A 02           6283 	jp	00111$
+                           6284 ;	main.c 82
+                           6285 ; genLabel
+   01B4                    6286 00104$:
+                           6287 ; genCall
+   01B4 CD 2A 01           6288 	call	_pular
+                           6289 ;	main.c 83
+                           6290 ; genCmpLt
+                           6291 ; AOP_HL for _posicaoXPlayer
+   01B7 21 AC 03           6292 	ld	hl,#_posicaoXPlayer + 0
+   01BA 5E                 6293 	ld	e,(hl)
+   01BB 23                 6294 	inc	hl
+   01BC 7E                 6295 	ld	a,(hl)
+   01BD EE 80              6296 	xor	a,#0x80
+   01BF 57                 6297 	ld	d,a
+   01C0 21 F6 7F           6298 	ld	hl,#0x7FF6
+   01C3 19                 6299 	add	hl,de
+   01C4 D2 0A 02           6300 	jp	nc,00111$
+                           6301 ;	main.c 84
+                           6302 ; genMinus
                            6303 ; AOP_HL for _posicaoXPlayer
-   01B0 21 AB 03           6304 	ld	hl,#_posicaoXPlayer + 0
-   01B3 2A                 6305 	ld	a,(hl+)
-   01B4 66                 6306 	ld	h,(hl)
-   01B5 6F                 6307 	ld	l,a
-   01B6 E5                 6308 	push	hl
-                           6309 ; genIpush
-   01B7 21 D9 01           6310 	ld	hl,#__str_0 + 0
-   01BA E5                 6311 	push	hl
-                           6312 ; genCall
-   01BB CD 00 00           6313 	call	_printf
-   01BE E8 04              6314 	lda	sp,4(sp)
-                           6315 ;	main.c 95
-                           6316 ; genLabel
-   01C0                    6317 00107$:
-                           6318 ;	main.c 96
-                           6319 ; genCast
-                           6320 ; AOP_HL for _posicaoYPlayer
-   01C0 21 AD 03           6321 	ld	hl,#_posicaoYPlayer + 0
-   01C3 4E                 6322 	ld	c,(hl)
-                           6323 ; genCast
-                           6324 ; AOP_HL for _posicaoXPlayer
-   01C4 21 AB 03           6325 	ld	hl,#_posicaoXPlayer + 0
-   01C7 46                 6326 	ld	b,(hl)
-                           6327 ; genIpush
-   01C8 79                 6328 	ld	a,c
-   01C9 F5                 6329 	push	af
-   01CA 33                 6330 	inc	sp
-                           6331 ; genIpush
-   01CB 78                 6332 	ld	a,b
-   01CC F5                 6333 	push	af
-   01CD 33                 6334 	inc	sp
-                           6335 ; genIpush
-   01CE 3E 00              6336 	ld	a,#0x00
-   01D0 F5                 6337 	push	af
-   01D1 33                 6338 	inc	sp
-                           6339 ; genCall
-   01D2 CD 00 00           6340 	call	_move_sprite
-   01D5 E8 03              6341 	lda	sp,3(sp)
-                           6342 ; genLabel
-   01D7                    6343 00108$:
-                           6344 ; genEndFunction
-                           6345 	
-   01D7 C1                 6346 	pop	bc
-   01D8 C9                 6347 	ret
-   01D9                    6348 ___executarControle_end:
-   01D9                    6349 __str_0:
-   01D9 25 64              6350 	.ascii "%d"
-   01DB 0A                 6351 	.db 0x0A
-   01DC 00                 6352 	.db 0x00
-                           6353 ;	main.c 99
-                           6354 ; genLabel
-                           6355 ; genFunction
-                           6356 ;	---------------------------------
-                           6357 ; Function retornarAlturaChao
-                           6358 ; ---------------------------------
-   01DD                    6359 ___retornarAlturaChao_start:
-   01DD                    6360 _retornarAlturaChao:
-                           6361 	
-                           6362 ;	main.c 100
-                           6363 ; genRet
-   01DD 11 87 00           6364 	ld	de,#0x0087
-                           6365 ; genLabel
-   01E0                    6366 00101$:
-                           6367 ; genEndFunction
-                           6368 	
-   01E0 C9                 6369 	ret
-   01E1                    6370 ___retornarAlturaChao_end:
-                           6371 	.area _CODE
+   01C7 21 AC 03           6304 	ld	hl,#_posicaoXPlayer + 0
+   01CA 7E                 6305 	ld	a,(hl)
+   01CB C6 FB              6306 	add	a,#0xFB
+   01CD 22                 6307 	ld	(hl+),a
+   01CE 7E                 6308 	ld	a,(hl)
+   01CF CE FF              6309 	adc	a,#0xFF
+   01D1 77                 6310 	ld	(hl),a
+                           6311 ;	main.c 86
+                           6312 ; genGoto
+   01D2 C3 0A 02           6313 	jp	00111$
+                           6314 ;	main.c 88
+                           6315 ; genLabel
+   01D5                    6316 00107$:
+                           6317 ; genPlus
+                           6318 ; AOP_HL for _posicaoXPlayer
+                           6319 ; genPlusIncr
+                           6320 ;	genPlusIncr failed
+   01D5 21 AC 03           6321 	ld	hl,#_posicaoXPlayer + 0
+   01D8 7E                 6322 	ld	a,(hl)
+   01D9 C6 05              6323 	add	a,#0x05
+   01DB 22                 6324 	ld	(hl+),a
+   01DC 7E                 6325 	ld	a,(hl)
+   01DD CE 00              6326 	adc	a,#0x00
+   01DF 77                 6327 	ld	(hl),a
+                           6328 ;	main.c 89
+                           6329 ; genGoto
+   01E0 C3 0A 02           6330 	jp	00111$
+                           6331 ;	main.c 91
+                           6332 ; genLabel
+   01E3                    6333 00108$:
+                           6334 ; genCall
+   01E3 CD 2A 01           6335 	call	_pular
+                           6336 ;	main.c 92
+                           6337 ; genPlus
+                           6338 ; AOP_HL for _posicaoXPlayer
+                           6339 ; genPlusIncr
+                           6340 ;	genPlusIncr failed
+   01E6 21 AC 03           6341 	ld	hl,#_posicaoXPlayer + 0
+   01E9 7E                 6342 	ld	a,(hl)
+   01EA C6 05              6343 	add	a,#0x05
+   01EC 22                 6344 	ld	(hl+),a
+   01ED 7E                 6345 	ld	a,(hl)
+   01EE CE 00              6346 	adc	a,#0x00
+   01F0 77                 6347 	ld	(hl),a
+                           6348 ;	main.c 93
+                           6349 ; genGoto
+   01F1 C3 0A 02           6350 	jp	00111$
+                           6351 ;	main.c 95
+                           6352 ; genLabel
+   01F4                    6353 00109$:
+                           6354 ; genCall
+   01F4 CD 2A 01           6355 	call	_pular
+                           6356 ;	main.c 96
+                           6357 ; genGoto
+   01F7 C3 0A 02           6358 	jp	00111$
+                           6359 ;	main.c 98
+                           6360 ; genLabel
+   01FA                    6361 00110$:
+                           6362 ; genIpush
+                           6363 ; AOP_HL for _posicaoXPlayer
+   01FA 21 AC 03           6364 	ld	hl,#_posicaoXPlayer + 0
+   01FD 2A                 6365 	ld	a,(hl+)
+   01FE 66                 6366 	ld	h,(hl)
+   01FF 6F                 6367 	ld	l,a
+   0200 E5                 6368 	push	hl
+                           6369 ; genIpush
+   0201 21 23 02           6370 	ld	hl,#__str_0 + 0
+   0204 E5                 6371 	push	hl
+                           6372 ; genCall
+   0205 CD 00 00           6373 	call	_printf
+   0208 E8 04              6374 	lda	sp,4(sp)
+                           6375 ;	main.c 100
+                           6376 ; genLabel
+   020A                    6377 00111$:
+                           6378 ;	main.c 101
+                           6379 ; genCast
+                           6380 ; AOP_HL for _posicaoYPlayer
+   020A 21 AE 03           6381 	ld	hl,#_posicaoYPlayer + 0
+   020D 4E                 6382 	ld	c,(hl)
+                           6383 ; genCast
+                           6384 ; AOP_HL for _posicaoXPlayer
+   020E 21 AC 03           6385 	ld	hl,#_posicaoXPlayer + 0
+   0211 46                 6386 	ld	b,(hl)
+                           6387 ; genIpush
+   0212 79                 6388 	ld	a,c
+   0213 F5                 6389 	push	af
+   0214 33                 6390 	inc	sp
+                           6391 ; genIpush
+   0215 78                 6392 	ld	a,b
+   0216 F5                 6393 	push	af
+   0217 33                 6394 	inc	sp
+                           6395 ; genIpush
+   0218 3E 00              6396 	ld	a,#0x00
+   021A F5                 6397 	push	af
+   021B 33                 6398 	inc	sp
+                           6399 ; genCall
+   021C CD 00 00           6400 	call	_move_sprite
+   021F E8 03              6401 	lda	sp,3(sp)
+                           6402 ; genLabel
+   0221                    6403 00112$:
+                           6404 ; genEndFunction
+                           6405 	
+   0221 C1                 6406 	pop	bc
+   0222 C9                 6407 	ret
+   0223                    6408 ___executarControle_end:
+   0223                    6409 __str_0:
+   0223 25 64              6410 	.ascii "%d"
+   0225 0A                 6411 	.db 0x0A
+   0226 00                 6412 	.db 0x00
+                           6413 ;	main.c 104
+                           6414 ; genLabel
+                           6415 ; genFunction
+                           6416 ;	---------------------------------
+                           6417 ; Function retornarAlturaChao
+                           6418 ; ---------------------------------
+   0227                    6419 ___retornarAlturaChao_start:
+   0227                    6420 _retornarAlturaChao:
+                           6421 	
+                           6422 ;	main.c 105
+                           6423 ; genRet
+   0227 11 87 00           6424 	ld	de,#0x0087
+                           6425 ; genLabel
+   022A                    6426 00101$:
+                           6427 ; genEndFunction
+                           6428 	
+   022A C9                 6429 	ret
+   022B                    6430 ___retornarAlturaChao_end:
+                           6431 	.area _CODE
 ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
 
 Symbol Table
@@ -6428,39 +6488,39 @@ Symbol Table
     _VBK_REG                           **** GX
     _WX_REG                            **** GX
     _WY_REG                            **** GX
-  0 ___cair_end                        0116 R
+  0 ___cair_end                        012A R
   0 ___cair_start                      00D6 R
-  0 ___executarControle_end            01D9 R
-  0 ___executarControle_start          0134 R
+  0 ___executarControle_end            0223 R
+  0 ___executarControle_start          015E R
   0 ___iniciarHardware_end             00D6 R
   0 ___iniciarHardware_start           00C3 R
   0 ___main_end                        00C3 R
   0 ___main_start                      0000 R
-  0 ___pular_end                       0134 R
-  0 ___pular_start                     0116 R
-  0 ___retornarAlturaChao_end          01E1 R
-  0 ___retornarAlturaChao_start        01DD R
+  0 ___pular_end                       015E R
+  0 ___pular_start                     012A R
+  0 ___retornarAlturaChao_end          022B R
+  0 ___retornarAlturaChao_start        0227 R
     __cpu                              **** GX
     __io_in                            **** GX
     __io_out                           **** GX
     __io_status                        **** GX
-  0 __str_0                            01D9 R
+  0 __str_0                            0223 R
   1 _background                        0020 GR
   1 _background_sprite                 034A GR
   0 _cair                              00D6 GR
   1 _carinha                           0000 GR
     _delay                             **** GX
-  0 _executarControle                  0134 GR
+  0 _executarControle                  015E GR
   0 _iniciarHardware                   00C3 GR
     _joypad                            **** GX
   0 _main                              0000 GR
     _move_sprite                       **** GX
-  1 _posicaoXPlayer                    03AB GR
-  1 _posicaoYPlayer                    03AD GR
+  1 _posicaoXPlayer                    03AC GR
+  1 _posicaoYPlayer                    03AE GR
     _printf                            **** GX
   1 _pulando                           03AA GR
-  0 _pular                             0116 GR
-  0 _retornarAlturaChao                01DD GR
+  0 _pular                             012A GR
+  0 _retornarAlturaChao                0227 GR
     _scroll_bkg                        **** GX
     _set_bkg_data                      **** GX
     _set_bkg_tiles                     **** GX
@@ -6472,12 +6532,12 @@ Symbol Table
 
 Area Table
 
-   0 _CODE                              size  1E1   flags 0
-   1 _DATA                              size  3AF   flags 0
+   0 _CODE                              size  22B   flags 0
+   1 _DATA                              size  3B0   flags 0
    2 _OVERLAY                           size    0   flags 0
    3 _ISEG                              size    0   flags 0
    4 _BSEG                              size    0   flags 0
    5 _XSEG                              size    0   flags 0
-   6 _GSINIT                            size 1611   flags 0
+   6 _GSINIT                            size 1614   flags 0
    7 _GSFINAL                           size    0   flags 0
    8 _HOME                              size    0   flags 0
